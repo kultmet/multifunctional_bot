@@ -12,7 +12,7 @@ Multifunctional bot, - developed for  test task
 
 look here https://t.me/kazback_multifunctional_bot
 
-<br>
+<hr>
 ## How to start
 With command <code>cd yor_derectory</code> go to your directory
 
