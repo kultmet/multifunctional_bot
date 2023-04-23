@@ -14,7 +14,7 @@ from buttons import button_bar, poll_botton_bar, currency_button_bar
 from weater_api import Weather
 from exchnge import exchange
 from constants import *
-from utils import *
+from utils import add_to_redis, generate_buttons
 
 logging.basicConfig(level=logging.INFO)
 
