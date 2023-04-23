@@ -1,9 +1,7 @@
 import os
-import requests
 
 import aiohttp
 import asyncio
-from requests import Response
 from dotenv import load_dotenv
 
 load_dotenv()

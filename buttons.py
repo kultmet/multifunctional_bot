@@ -1,4 +1,4 @@
-from aiogram.types import ReplyKeyboardRemove, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 button_weather = KeyboardButton('Погода')
 button_currency = KeyboardButton('Валюта')
@@ -9,5 +9,7 @@ button_bar.add(button_weather, button_currency, button_cats, button_poll)
 
 pool_add_option = KeyboardButton('Добавить вариант')
 save_poll = KeyboardButton('Сохранить опрос')
-poll_botton_bar = ReplyKeyboardMarkup(resize_keyboard=True)
+poll_botton_bar = ReplyKeyboardMarkup(resize_keyboard=True, row_width=4)
 poll_botton_bar.add(save_poll)
+
+currency_button_bar = ReplyKeyboardMarkup(resize_keyboard=True)
