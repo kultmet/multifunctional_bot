@@ -31,6 +31,7 @@ next step, - installing requirements
 ```
 pip install -r requiremants.txt
 ```
+
 __Please note that you need to start Redis__
 
 How to install Redis Stack using Docker
