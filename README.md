@@ -35,6 +35,6 @@ and enjoy
 - Sends photo with cats and kitties
 - Helps the user? create poll
 
-### You have the opportunity to see how the bot works, if bot works in creator's local computer.
+### You have the opportunity to see how the bot works, if the bot is enabled in creator's local computer.
 
 look here https://t.me/kazback_multifunctional_bot
