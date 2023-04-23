@@ -3,8 +3,10 @@ from aiogram.types import KeyboardButton
 from buttons import currency_button_bar
 from constants import *
 
+
 async def add_to_redis(rates: dict):
     REDIS.mset(rates)
+
 
 def generate_buttons(rates: dict):
     x = 0

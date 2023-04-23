@@ -38,6 +38,7 @@ async def send_welcome(message: types.Message):
         reply_markup=button_bar
     )
 
+
 @dp.message_handler(Text('Погода'))
 async def weather(message: types.Message):
     """Asks city name."""
@@ -47,6 +48,7 @@ async def weather(message: types.Message):
         reply_markup=ReplyKeyboardRemove()
     )
     await DataInput.city_name.set()
+
 
 @dp.message_handler(state=DataInput.city_name)
 async def get_weather(message: types.Message, state: FSMContext):
@@ -67,6 +69,7 @@ async def get_weather(message: types.Message, state: FSMContext):
             weather = Weather(weather_json)
             await message.answer(weather, reply_markup=button_bar)
     await state.finish()
+
 
 @dp.message_handler(Text('Валюта'))
 async def currency(message: types.Message):
@@ -99,7 +102,7 @@ async def currency(message: types.Message):
 async def current_reciver(message: types.Message, state: FSMContext):
     """Accepts the current currency and asks for required currency."""
     answer = message.text
-    if not REDIS.exists(answer) and answer!= 'RUB':
+    if not REDIS.exists(answer) and answer != 'RUB':
         await message.answer(
             'Нет такой валюты. Выберете текущую валюту',
             reply_markup=currency_button_bar
@@ -110,7 +113,6 @@ async def current_reciver(message: types.Message, state: FSMContext):
             'Выберете требуемую валюту',
             reply_markup=currency_button_bar
         )
-        data = await state.get_data()
         await DataInput.next()
 
 
@@ -118,7 +120,7 @@ async def current_reciver(message: types.Message, state: FSMContext):
 async def required_reciver(message: types.Message, state: FSMContext):
     """Accepts the requided currency and asks for amount."""
     answer = message.text
-    if not REDIS.exists(answer) and answer!= 'RUB':
+    if not REDIS.exists(answer) and answer != 'RUB':
         await message.answer(
             'Нет такой валюты. Выберете требуемую валюту',
             reply_markup=currency_button_bar
@@ -129,6 +131,7 @@ async def required_reciver(message: types.Message, state: FSMContext):
             'Введите сумму', reply_markup=ReplyKeyboardRemove()
         )
         await DataInput.next()
+
 
 @dp.message_handler(state=DataInput.amount_currency)
 async def amount_reciver(message: types.Message, state: FSMContext):
@@ -167,11 +170,13 @@ async def cat(message: types.Message):
                     reply_markup=button_bar
                 )
 
+
 @dp.message_handler(Text('Создать опрос'))
 async def create_poll(message: types.Message):
     """Initiates the creation of a survey."""
     await message.answer('Введите вопрос', reply_markup=ReplyKeyboardRemove())
     await DataInput.poll_question.set()
+
 
 @dp.message_handler(state=DataInput.poll_question)
 async def question(message: types.Message, state: FSMContext):
@@ -184,6 +189,7 @@ async def question(message: types.Message, state: FSMContext):
     )
     await DataInput.next()
     await state.update_data(options=[])
+
 
 @dp.message_handler(state=DataInput.option)
 async def option(message: types.Message, state: FSMContext):
@@ -207,6 +213,7 @@ async def option(message: types.Message, state: FSMContext):
         'Добавьте еще вариант ответа, или сохраните опрос',
         reply_markup=poll_botton_bar
     )
+
 
 @dp.message_handler()
 async def use_the_buttons_answer(message: types.Message):
