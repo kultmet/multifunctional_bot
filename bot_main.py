@@ -195,15 +195,21 @@ async def question(message: types.Message, state: FSMContext):
 async def option(message: types.Message, state: FSMContext):
     """Adds option or saves poll."""
     if message.text == 'Сохранить опрос':
-        await message.answer(
-            f'Опрос сохранен и отправлен в канал {CHANNEL_URL}',
-            reply_markup=button_bar
-        )
         data = await state.get_data()
-        await bot.send_message(CHANNEL_ID, 'Пройдите опрос!')
-        await bot.send_poll(CHANNEL_ID, data['question'], data['options'])
-        await state.finish()
-        return
+        if len(data['options']) < MINIMAL_OPTION_AMOUNT:
+            await message.answer(
+                'Вориантов ответа должно быть больше одного!!!'
+            )
+            return
+        else:
+            await message.answer(
+                f'Опрос сохранен и отправлен в канал {CHANNEL_URL}',
+                reply_markup=button_bar
+            )
+            await bot.send_message(CHANNEL_ID, 'Пройдите опрос!')
+            await bot.send_poll(CHANNEL_ID, data['question'], data['options'])
+            await state.finish()
+            return
     data = await state.get_data()
     options: list = data['options']
     answer = message.text

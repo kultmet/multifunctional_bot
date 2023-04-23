@@ -27,3 +27,5 @@ WEATHER_PARAMS = {
 }
 CATS_URL = 'https://api.thecatapi.com/v1/images/search'
 CURRENCY_URL = 'https://www.cbr-xml-daily.ru/latest.js'
+
+MINIMAL_OPTION_AMOUNT = 2
